@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: '駐輪所探訪',
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
@@ -30,7 +31,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String title = '駐輪場探訪';
+  static String title = '駐輪場探訪';
   int currentIndex = 1;
   List<Widget> _screens = [
     Favorite(),
