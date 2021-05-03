@@ -32,7 +32,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   static String title = '駐輪場探訪';
-  int currentIndex = 1;
+  static int currentIndex = 1;
+  bool _isVisibleFab = true;
   List<Widget> _screens = [
     Favorite(),
     Map(),
@@ -46,11 +47,14 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(title),
       ),
       body: _screens[currentIndex],
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          
-        },
-        child: Icon(Icons.add),
+      floatingActionButton: Visibility(
+        visible: _isVisibleFab,
+        child: FloatingActionButton(
+          onPressed: () {
+            print('FAB押されました');
+          },
+          child: Icon(Icons.add),
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
@@ -71,6 +75,11 @@ class _MyHomePageState extends State<MyHomePage> {
         onTap: (int index) {
           setState(() {
             currentIndex = index;
+            if(currentIndex == 1) {
+              _isVisibleFab = true;
+            } else {
+              _isVisibleFab = false;
+            }
           });
         },
       ),
