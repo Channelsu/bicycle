@@ -78,13 +78,28 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  // FAB構築メソッド
   Widget _buildFloatingActionButton() => Visibility(
     visible: _isVisibleFab,
-    child: FloatingActionButton(
-      onPressed: () {
-        print('FAB押されました');
-      },
-      child: Icon(Icons.add),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        FloatingActionButton(
+          onPressed: () {
+            print('新規追加ダイアログ表示');
+          },
+          child: Icon(Icons.add_location),
+        ),
+        Container(
+          margin: EdgeInsets.symmetric(horizontal:8, vertical: 16),
+          child: FloatingActionButton(
+            onPressed: () {
+              print('現在地に遷移');
+            },
+            child: Icon(Icons.my_location),
+          ),
+        ),
+      ],
     ),
   );
 }
