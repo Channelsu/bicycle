@@ -47,15 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(title),
       ),
       body: _screens[currentIndex],
-      floatingActionButton: Visibility(
-        visible: _isVisibleFab,
-        child: FloatingActionButton(
-          onPressed: () {
-            print('FAB押されました');
-          },
-          child: Icon(Icons.add),
-        ),
-      ),
+      floatingActionButton: _buildFloatingActionButton(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         items: [
@@ -85,4 +77,14 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
+  Widget _buildFloatingActionButton() => Visibility(
+    visible: _isVisibleFab,
+    child: FloatingActionButton(
+      onPressed: () {
+        print('FAB押されました');
+      },
+      child: Icon(Icons.add),
+    ),
+  );
 }
