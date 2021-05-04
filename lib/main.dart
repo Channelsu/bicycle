@@ -33,7 +33,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   static String title = '駐輪場探訪';
   static int currentIndex = 1;
-  bool _isVisibleFab = true;
   List<Widget> _screens = [
     Favorite(),
     Map(),
@@ -53,29 +52,26 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   // FAB構築メソッド
-  Widget _buildFloatingActionButton() => Visibility(
-    visible: _isVisibleFab,
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        FloatingActionButton(
-          child: Icon(Icons.add_location),
+  Widget _buildFloatingActionButton() => Column(
+    mainAxisSize: MainAxisSize.min,
+    children: <Widget>[
+      if (currentIndex == 1) FloatingActionButton(
+        child: Icon(Icons.add_location),
+        onPressed: () {
+          print('新規追加ダイアログ表示');
+        },
+      ),
+      if (currentIndex == 1) Container(
+        margin: EdgeInsets.symmetric(horizontal:8, vertical: 16),
+        child: FloatingActionButton(
+          child: Icon(Icons.my_location, color: Theme.of(context).primaryColor),
+          backgroundColor: Colors.white,
           onPressed: () {
-            print('新規追加ダイアログ表示');
+            print('現在地に遷移');
           },
         ),
-        Container(
-          margin: EdgeInsets.symmetric(horizontal:8, vertical: 16),
-          child: FloatingActionButton(
-            child: Icon(Icons.my_location, color: Theme.of(context).primaryColor),
-            backgroundColor: Colors.white,
-            onPressed: () {
-              print('現在地に遷移');
-            },
-          ),
-        ),
-      ],
-    ),
+      ),
+    ],
   );
 
   //
@@ -103,11 +99,6 @@ class _MyHomePageState extends State<MyHomePage> {
     onTap: (int index) {
       setState(() {
         currentIndex = index;
-        if(currentIndex == 1) {
-          _isVisibleFab = true;
-        } else {
-          _isVisibleFab = false;
-        }
       });
     },
   );
