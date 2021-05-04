@@ -59,23 +59,29 @@ class _MyHomePageState extends State<MyHomePage> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         FloatingActionButton(
+          child: Icon(Icons.add_location),
           onPressed: () {
             print('新規追加ダイアログ表示');
           },
-          child: Icon(Icons.add_location),
         ),
         Container(
           margin: EdgeInsets.symmetric(horizontal:8, vertical: 16),
           child: FloatingActionButton(
+            child: Icon(Icons.my_location, color: Theme.of(context).primaryColor),
+            backgroundColor: Colors.white,
             onPressed: () {
               print('現在地に遷移');
             },
-            child: Icon(Icons.my_location),
           ),
         ),
       ],
     ),
   );
+
+  //
+  createFormDialog() {
+    
+  }
 
   // ボトムナビゲーション構築メソッド
   Widget _buildBottomNavigationBar() => BottomNavigationBar(
@@ -105,4 +111,5 @@ class _MyHomePageState extends State<MyHomePage> {
       });
     },
   );
+
 }
