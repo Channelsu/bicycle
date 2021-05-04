@@ -48,33 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: _screens[currentIndex],
       floatingActionButton: _buildFloatingActionButton(),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border),
-            title: Text('お気に入り'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.map),
-            title: Text('マップ'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.info_outline),
-            title: Text('お知らせ'),
-          ),
-        ],
-        onTap: (int index) {
-          setState(() {
-            currentIndex = index;
-            if(currentIndex == 1) {
-              _isVisibleFab = true;
-            } else {
-              _isVisibleFab = false;
-            }
-          });
-        },
-      ),
+      bottomNavigationBar: _buildBottomNavigationBar(),
     );
   }
 
@@ -101,5 +75,34 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ],
     ),
+  );
+
+  // ボトムナビゲーション構築メソッド
+  Widget _buildBottomNavigationBar() => BottomNavigationBar(
+    currentIndex: currentIndex,
+    items: [
+      BottomNavigationBarItem(
+        icon: Icon(Icons.favorite_border),
+        title: Text('お気に入り'),
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.map),
+        title: Text('マップ'),
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.info_outline),
+        title: Text('お知らせ'),
+      ),
+    ],
+    onTap: (int index) {
+      setState(() {
+        currentIndex = index;
+        if(currentIndex == 1) {
+          _isVisibleFab = true;
+        } else {
+          _isVisibleFab = false;
+        }
+      });
+    },
   );
 }
