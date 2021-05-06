@@ -1,5 +1,4 @@
 import 'package:bicycle/routes.dart';
-import 'package:bicycle/screens/spot_form.dart';
 import 'package:flutter/material.dart';
 import 'package:bicycle/screens/favorite.dart';
 import 'package:bicycle/screens/map.dart';
@@ -79,11 +78,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     ],
   );
-
-  //
-  createFormDialog() {
-    
-  }
 
   // ボトムナビゲーション構築メソッド
   Widget _buildBottomNavigationBar() => BottomNavigationBar(
