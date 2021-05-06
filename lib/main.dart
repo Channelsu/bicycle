@@ -1,3 +1,5 @@
+import 'package:bicycle/routes.dart';
+import 'package:bicycle/screens/spot_form.dart';
 import 'package:flutter/material.dart';
 import 'package:bicycle/screens/favorite.dart';
 import 'package:bicycle/screens/map.dart';
@@ -20,7 +22,9 @@ class MyApp extends StatelessWidget {
         ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(),
+      // home: MyHomePage(),
+      initialRoute: Routes.getInitialRoute(),
+      routes: Routes.routes,
     );
   }
 }
@@ -56,14 +60,16 @@ class _MyHomePageState extends State<MyHomePage> {
     mainAxisSize: MainAxisSize.min,
     children: <Widget>[
       if (currentIndex == 1) FloatingActionButton(
+        heroTag: 'add_location',
         child: Icon(Icons.add_location),
-        onPressed: () {
-          print('新規追加ダイアログ表示');
+        onPressed: () async {
+          await Navigator.pushNamed(context, Routes.spotForm,);
         },
       ),
       if (currentIndex == 1) Container(
         margin: EdgeInsets.symmetric(horizontal:8, vertical: 16),
         child: FloatingActionButton(
+          heroTag: 'my_location',
           child: Icon(Icons.my_location, color: Theme.of(context).primaryColor),
           backgroundColor: Colors.white,
           onPressed: () {
