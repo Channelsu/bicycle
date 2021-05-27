@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>io.flutter.embedded_views_preview</key>  <!-- google mapのため追加 -->
-    <string>YES</string>                          <!-- google mapのため追加 -->
+  <key>NSLocationWhenInUseUsageDescription</key>           <!-- google mapのため追加 -->
+  <string>Your location is required for this app</string>  <!-- google mapのため追加 -->
+  <key>NSLocationAlwaysUsageDescription</key>              <!-- google mapのため追加 -->
+  <string>Your location is required for this app</string>  <!-- google mapのため追加 -->
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -43,5 +45,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+  <key>io.flutter.embedded_views_preview</key>  <!-- google mapのため追加 -->
+  <string>YES</string>                          <!-- google mapのため追加 -->
 </dict>
 </plist>
