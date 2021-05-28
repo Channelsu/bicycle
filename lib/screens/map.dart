@@ -23,6 +23,7 @@ class _MapState extends State<Map> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GoogleMap(
+        onMapCreated: _onMapCreated,
 	      initialCameraPosition: CameraPosition(
 	        target: LatLng(35.68131292899063, 139.76717584669254),
 	        zoom: 15,
