@@ -18,6 +18,24 @@ class _MapState extends State<Map> {
     _controller.complete(controller);
   }
 
+  void _currentLocation() async {
+   final GoogleMapController controller = await _controller.future;
+   LocationData currentLocation;
+   var location = new Location();
+   try {
+     currentLocation = await location.getLocation();
+     } on Exception {
+       currentLocation = null;
+       }
+
+    controller.animateCamera(CameraUpdate.newCameraPosition(
+      CameraPosition(
+        bearing: 0,
+        target: LatLng(currentLocation.latitude, currentLocation.longitude),
+        zoom: 15.0,
+      ),
+    ));
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -31,8 +49,31 @@ class _MapState extends State<Map> {
         myLocationButtonEnabled: false,
         myLocationEnabled: true,
       ),
+      floatingActionButton: _buildFloatingActionButton(),
     );
   }
 
+  // FAB構築メソッド
+  Widget _buildFloatingActionButton() => Column(
+    mainAxisSize: MainAxisSize.min,
+    children: <Widget>[
+      FloatingActionButton(
+        heroTag: 'add_location',
+        child: Icon(Icons.add_location),
+        onPressed: () async {
+          await Navigator.pushNamed(context, Routes.spotForm,);
+        },
+      ),
+      Container(
+        margin: EdgeInsets.symmetric(horizontal:8, vertical: 16),
+        child: FloatingActionButton(
+          heroTag: 'my_location',
+          child: Icon(Icons.my_location, color: Theme.of(context).primaryColor),
+          backgroundColor: Colors.white,
+          onPressed: _currentLocation,
+        ),
+      ),
+    ],
+  );
 
 }
