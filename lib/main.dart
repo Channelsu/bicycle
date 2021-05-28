@@ -49,35 +49,9 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(title),
       ),
       body: _screens[currentIndex],
-      floatingActionButton: _buildFloatingActionButton(),
       bottomNavigationBar: _buildBottomNavigationBar(),
     );
   }
-
-  // FAB構築メソッド
-  Widget _buildFloatingActionButton() => Column(
-    mainAxisSize: MainAxisSize.min,
-    children: <Widget>[
-      if (currentIndex == 1) FloatingActionButton(
-        heroTag: 'add_location',
-        child: Icon(Icons.add_location),
-        onPressed: () async {
-          await Navigator.pushNamed(context, Routes.spotForm,);
-        },
-      ),
-      if (currentIndex == 1) Container(
-        margin: EdgeInsets.symmetric(horizontal:8, vertical: 16),
-        child: FloatingActionButton(
-          heroTag: 'my_location',
-          child: Icon(Icons.my_location, color: Theme.of(context).primaryColor),
-          backgroundColor: Colors.white,
-          onPressed: () {
-            print('現在地に遷移');
-          },
-        ),
-      ),
-    ],
-  );
 
   // ボトムナビゲーション構築メソッド
   Widget _buildBottomNavigationBar() => BottomNavigationBar(
