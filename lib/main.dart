@@ -59,15 +59,15 @@ class _MyHomePageState extends State<MyHomePage> {
     items: [
       BottomNavigationBarItem(
         icon: Icon(Icons.favorite_border),
-        title: Text('お気に入り'),
+        label: 'お気に入り',
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.map),
-        title: Text('マップ'),
+        label: 'マップ',
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.info_outline),
-        title: Text('お知らせ'),
+        label: 'お知らせ',
       ),
     ],
     onTap: (int index) {
