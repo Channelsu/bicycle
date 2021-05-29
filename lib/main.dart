@@ -1,8 +1,10 @@
+import 'package:bicycle/provider/favorite_provider.dart';
 import 'package:bicycle/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:bicycle/screens/favorite.dart';
 import 'package:bicycle/screens/map.dart';
 import 'package:bicycle/screens/info.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,19 +13,22 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: '駐輪所探訪',
-      theme: ThemeData(
-        primarySwatch: Colors.deepOrange,
-        floatingActionButtonTheme: FloatingActionButtonThemeData(
-          foregroundColor: Colors.white,
+    return ChangeNotifierProvider<FavoriteProvider>(
+      create: (context) => FavoriteProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: '駐輪所探訪',
+        theme: ThemeData(
+          primarySwatch: Colors.deepOrange,
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+            foregroundColor: Colors.white,
+          ),
+          visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+        // home: MyHomePage(),
+        initialRoute: Routes.getInitialRoute(),
+        routes: Routes.routes,
       ),
-      // home: MyHomePage(),
-      initialRoute: Routes.getInitialRoute(),
-      routes: Routes.routes,
     );
   }
 }
