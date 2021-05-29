@@ -25,10 +25,12 @@ class _FavoriteState extends State<Favorite> {
                   children: [
                     IconButton(
                       icon: Icon(Icons.location_on,color: Colors.redAccent,),
+                      splashRadius: 24,
                       onPressed: _jumpToSpot,
                     ),
                     IconButton(
                       icon: Icon(Icons.delete),
+                      splashRadius: 24,
                       onPressed: _deleteFavorite,
                     ),
                   ],
