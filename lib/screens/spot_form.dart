@@ -42,6 +42,20 @@ class _SpotFormState extends State<SpotForm> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               _buildSpotName(),
+              SizedBox(height: 100,),
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  child: Text('投稿', style: TextStyle(fontSize: 22),),
+                  style: ElevatedButton.styleFrom(shape: StadiumBorder()),
+                  onPressed: () {},
+                ),
+              ),
+              // TextButton(
+              //   onPressed: onPressed,
+              //   child: child,
+              // )
             ],
           ),
         ),
