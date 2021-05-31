@@ -32,6 +32,7 @@ class _SpotFormState extends State<SpotForm> {
     return Scaffold(
       appBar: AppBar(
         title: Text('新しい場所の追加'),
+        centerTitle: true,
       ),
       body: Container(
         margin: EdgeInsets.all(24),

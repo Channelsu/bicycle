@@ -52,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
+        centerTitle: true,
       ),
       body: _screens[currentIndex],
       bottomNavigationBar: _buildBottomNavigationBar(),
