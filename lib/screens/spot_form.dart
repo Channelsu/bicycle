@@ -9,6 +9,24 @@ class _SpotFormState extends State<SpotForm> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  String _spotName;
+
+  Widget _buildSpotName() {
+    return TextFormField(
+      decoration: InputDecoration(labelText: '駐輪所名',),
+      maxLength: 20,
+      validator: (String value) {
+        if(value.isEmpty) {
+          return '必須入力です';
+        }
+        return null;
+      },
+      onSaved: (String value) {
+        _spotName = value;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +37,13 @@ class _SpotFormState extends State<SpotForm> {
         margin: EdgeInsets.all(24),
         child: Form(
           key: _formKey,
-          child: Column(),
+          child: Column(
+            // 縦を基準として中央に配置
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _buildSpotName(),
+            ],
+          ),
         ),
       ),
     );
