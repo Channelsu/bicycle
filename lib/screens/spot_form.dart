@@ -47,15 +47,16 @@ class _SpotFormState extends State<SpotForm> {
                 width: double.infinity,
                 height: 50,
                 child: ElevatedButton(
-                  child: Text('投稿', style: TextStyle(fontSize: 22),),
+                  child: Text('投稿', style: TextStyle(fontSize: 20),),
                   style: ElevatedButton.styleFrom(shape: StadiumBorder()),
                   onPressed: () {},
                 ),
               ),
-              // TextButton(
-              //   onPressed: onPressed,
-              //   child: child,
-              // )
+              SizedBox(height: 10,),
+              TextButton(
+                child: Text('キャンセル', style: TextStyle(fontSize: 20),),
+                onPressed: () {},
+              )
             ],
           ),
         ),
