@@ -43,3 +43,9 @@ app.*.map.json
 
 # Exceptions to above rules.
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+ios/Flutter/Flutter 2.podspec
+.packages 2
+android/app/src/main/AndroidManifest.xml
+ios/Flutter/Generated 2.xcconfig
+ios/Flutter/Generated 3.xcconfig
+ios/Runner/AppDelegate.swift
