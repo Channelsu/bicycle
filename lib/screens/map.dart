@@ -46,10 +46,10 @@ class _MapState extends State<Map> {
         child: CircularProgressIndicator(),
       );
     } else {
-    return GoogleMap(
+      return GoogleMap(
         onMapCreated: _onMapCreated,
 	      initialCameraPosition: CameraPosition(
-	        target: LatLng(35.68131292899063, 139.76717584669254),
+	        target: LatLng(_latitude, _longitude),
 	        zoom: 15,
 	      ),
         myLocationButtonEnabled: false,
@@ -85,7 +85,7 @@ class _MapState extends State<Map> {
       ),
     ],
   );
-  
+
   // 現在地に遷移するメソッド
   void _currentLocation() async {
     final GoogleMapController controller = await _controller.future;
