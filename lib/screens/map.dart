@@ -11,36 +11,42 @@ class Map extends StatefulWidget {
 }
 
 class _MapState extends State<Map> {
-
+  double _latitude;
+  double _longitude;
   Completer<GoogleMapController> _controller = Completer();
 
-  void _onMapCreated(GoogleMapController controller) {
-    _controller.complete(controller);
+  @override
+  void initState() { 
+    super.initState();
+    _getLocation(context);
   }
 
-  void _currentLocation() async {
-   final GoogleMapController controller = await _controller.future;
-   LocationData currentLocation;
-   var location = new Location();
-   try {
-     currentLocation = await location.getLocation();
-     } on Exception {
-       currentLocation = null;
-       }
-
-    controller.animateCamera(CameraUpdate.newCameraPosition(
-      CameraPosition(
-        bearing: 0,
-        target: LatLng(currentLocation.latitude, currentLocation.longitude),
-        zoom: 15.0,
-      ),
-    ));
+  Future<void> _getLocation(context) async {
+    LocationData _currentPosition;
+    var location = new Location();
+    _currentPosition = await location.getLocation();
+    setState(() {
+      _latitude = _currentPosition.latitude;
+      _longitude = _currentPosition.longitude;
+    });
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GoogleMap(
+      body: _buildMap(),
+      floatingActionButton: _buildFloatingActionButton(),
+    );
+  }
+  
+  // マップ構築メソッド
+  Widget _buildMap() {
+    if (_latitude == null || _longitude == null) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    } else {
+    return GoogleMap(
         onMapCreated: _onMapCreated,
 	      initialCameraPosition: CameraPosition(
 	        target: LatLng(35.68131292899063, 139.76717584669254),
@@ -48,9 +54,13 @@ class _MapState extends State<Map> {
 	      ),
         myLocationButtonEnabled: false,
         myLocationEnabled: true,
-      ),
-      floatingActionButton: _buildFloatingActionButton(),
-    );
+        zoomControlsEnabled: false,
+      );
+    }
+  }
+
+  void _onMapCreated(GoogleMapController controller) {
+    _controller.complete(controller);
   }
 
   // FAB構築メソッド
@@ -75,5 +85,24 @@ class _MapState extends State<Map> {
       ),
     ],
   );
+  
+  // 現在地に遷移するメソッド
+  void _currentLocation() async {
+    final GoogleMapController controller = await _controller.future;
+    LocationData currentLocation;
+    var location = new Location();
+    try {
+      currentLocation = await location.getLocation();
+    } on Exception {
+      currentLocation = null;
+    }
 
+    controller.animateCamera(CameraUpdate.newCameraPosition(
+      CameraPosition(
+        bearing: 0,
+        target: LatLng(currentLocation.latitude, currentLocation.longitude),
+        zoom: 15.0,
+      ),
+    ));
+  }
 }
