@@ -36,9 +36,34 @@ class _FavoriteState extends State<Favorite> {
                         IconButton(
                           icon: Icon(Icons.delete),
                           splashRadius: 24,
-                          onPressed: () {
-                            // TODO: 削除確認ダイアログ出す
-                            model.deleteFavoriteSpot(favorite.id);
+                          onPressed: () async {
+                            var result = await showDialog<int>(
+                              context: context,
+                              barrierDismissible: true,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  content: Text(
+                                    '${favorite.spotName}を\nお気に入りから削除します。\nよろしいですか？'
+                                  ),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: Text('はい'),
+                                      onPressed: () {
+                                        // お気に入りからの削除処理
+                                        model.deleteFavoriteSpot(favorite.id);
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                    TextButton(
+                                      child: Text('いいえ'),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
                           },
                         ),
                       ],
