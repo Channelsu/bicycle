@@ -72,6 +72,13 @@ class _MapState extends State<Map> {
         child: Icon(Icons.add_location),
         onPressed: () async {
           await Navigator.pushNamed(context, Routes.spotForm,);
+          // Navigator.push(
+          //   context, 
+          //   MaterialPageRoute(
+          //     builder: (context) => SpotForm(),
+          //     fullscreenDialog: true,
+          //   )
+          // );
         },
       ),
       Container(

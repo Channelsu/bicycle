@@ -56,7 +56,9 @@ class _SpotFormState extends State<SpotForm> {
               SizedBox(height: 10,),
               TextButton(
                 child: Text('キャンセル', style: TextStyle(fontSize: 20),),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
               )
             ],
           ),
