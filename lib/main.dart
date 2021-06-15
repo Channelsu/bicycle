@@ -4,9 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:bicycle/screens/favorite.dart';
 import 'package:bicycle/screens/map.dart';
 import 'package:bicycle/screens/info.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  // mainの中で非同期処理を行う場合、下記を実行
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp, //縦画面固定
+  ]);
   runApp(MyApp());
 }
 
